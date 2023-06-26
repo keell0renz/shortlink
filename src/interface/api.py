@@ -9,7 +9,7 @@ async def api_get_link(link_id: str = Path(...)):
 
 
 @router.post("/create/{link_id}")
-async def api_create_link(link_id: str = Path(...), original_link: str = Body(...), expires: Union[str, None] = Body(...)):
+async def api_create_link(link_id: str = Path(...), original_link: str = Body(...), expiration_time: Union[str, None] = Body(...)):
     pass
 
 
@@ -23,11 +23,11 @@ async def api_change_original_link(link_id: str = Path(...), new_original_link: 
     pass
 
 
-@router.put("/change/{link_id}/expiration_date")
-async def api_change_expiration_date(link_id: str = Path(...), new_expiration_date: Union[str, None] = Body(...)):
+@router.put("/change/{link_id}/expiration_time")
+async def api_change_expiration_date(link_id: str = Path(...), new_expiration_time: Union[str, None] = Body(...)):
     pass
 
 
-@router.delete("/delete/{link_id}/expiration_date")
+@router.delete("/delete/{link_id}/expiration_time")
 async def api_delete_expiration_date(link_id: str = Path(...)):
     pass
