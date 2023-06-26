@@ -42,4 +42,4 @@ Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 _ensure_schema_exists(Session(), engine, Base, "links")
 
-get_session = _create_get_session()
+get_session = _create_get_session(Session)
