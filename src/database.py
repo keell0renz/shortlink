@@ -14,6 +14,8 @@ def _connect(default_db_string):
     else:
         engine = create_engine(default_db_string)
 
+    return engine
+
 def _ensure_schema_exists(session, engine, base, check_for):
     inspector = inspect(session.bind)
     tables = inspector.get_table_names()
