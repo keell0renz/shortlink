@@ -1,7 +1,16 @@
 from fastapi import APIRouter, Path, Body, Depends
-from typing import Union
+from fastapi.security import APIKeyHeader
 
-router = APIRouter()
+from typing import Union
+import os
+
+api_key_header = APIKeyHeader(name="api_key", auto_error=False)
+
+async def verify_api_key(api_key: str = Depends(api_key_header)):
+    # Here I raise NotAuthenticated exception if key is not good
+    pass
+
+router = APIRouter(dependencies=[Depends(verify_api_key)])
 
 @router.get("/get/{link_id}")
 async def api_get_link(link_id: str = Path(...)):
