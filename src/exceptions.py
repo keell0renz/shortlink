@@ -47,9 +47,9 @@ async def exception_authentication_failed(request: Request, exception: Authentic
     return exception.response()
 
 @app.exception_handler(LinkAlreadyExists)
-async def exception_authentication_failed(request: Request, exception: LinkAlreadyExists):
+async def exception_link_already_exists(request: Request, exception: LinkAlreadyExists):
     return exception.response()
 
 @app.exception_handler(LinkDoesNotExist)
-async def exception_authentication_failed(request: Request, exception: LinkDoesNotExist):
+async def exception_link_does_not_exist(request: Request, exception: LinkDoesNotExist):
     return exception.response()
