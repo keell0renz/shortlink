@@ -3,6 +3,9 @@ from datetime import datetime
 from abc import ABC, abstractmethod
 from pydantic import BaseModel
 
+from sqlalchemy.orm import Session
+from ..database.db_schema import Link, Interactions
+
 class LinkDatabaseRecord(BaseModel):
     link_id: str
     original_link: str
@@ -29,6 +32,12 @@ class AbstractLinkRepository(ABC):
     @abstractmethod
     def change_expiration_time(self, link_id: str, new_expiration_time: datetime) -> None:
         pass
+
+class LinkRepository(AbstractLinkRepository):
+    def __init__(self, session):
+        self.session = session
+
+    #TODO Repository!
 
 class LinkInterface():
     def __init__(self, repository: AbstractLinkRepository):
