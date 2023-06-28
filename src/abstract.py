@@ -35,7 +35,7 @@ class AbstractLinkRepository(ABC):
         pass
 
     @abstractmethod
-    def change_expiration_date(self, link_id: str, new_expiration_date: datetime) -> None:
+    def change_expiration_time(self, link_id: str, new_expiration_time: datetime) -> None:
         pass
 
 class AbstractInteractionsRepository(ABC):
