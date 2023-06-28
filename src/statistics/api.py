@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Path, Depends
-
 from ..utils import verify_api_key, get_link_id
 
 router = APIRouter(dependencies=[Depends(verify_api_key)])

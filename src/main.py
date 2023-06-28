@@ -1,5 +1,4 @@
 from .exceptions import app
-
 from .interface import ui as ui
 from .interface import api as api
 from .statistics import api as stat_api

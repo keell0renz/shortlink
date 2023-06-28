@@ -1,8 +1,6 @@
 from fastapi import Depends, Path, Body
 from fastapi.security import APIKeyHeader
-
 from .exceptions import AuthenticationFailed
-
 from typing import Union
 import os
 

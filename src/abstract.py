@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 from typing import List, Union
-
 from pydantic import BaseModel
 from datetime import datetime
 
