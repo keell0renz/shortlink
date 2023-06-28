@@ -34,7 +34,7 @@ class AbstractLinkRepository(ABC):
         pass
 
 class LinkRepository(AbstractLinkRepository):
-    def __init__(self, session):
+    def __init__(self, session: Session):
         self.session = session
 
     #TODO Repository!
