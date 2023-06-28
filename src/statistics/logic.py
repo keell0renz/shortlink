@@ -31,5 +31,9 @@ class AbstractInteractionsRepository(ABC):
         pass
 
     @abstractmethod
+    def add_interaction_by_link(self, link_id: str, ip: str, country: str, user_agent: str) -> None:
+        pass
+
+    @abstractmethod
     def get_link_interactions_by_link_id(self, link_id: str) -> List[InteractionsDatabaseRecord]:
         pass
