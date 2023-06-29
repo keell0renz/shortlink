@@ -1,4 +1,3 @@
-from abc import ABC, abstractmethod
 from typing import List, Union
 from pydantic import BaseModel
 from datetime import datetime
@@ -24,24 +23,7 @@ class InteractionsDatabaseRecord(BaseModel):
     country: str
     user_agent: str
 
-class AbstractInteractionsRepository(ABC):
-    @abstractmethod
-    def get_all_link_records(self) -> List[LinkDatabaseRecord]:
-        pass
-
-    @abstractmethod
-    def get_all_active_links(self) -> List[LinkDatabaseRecord]:
-        pass
-
-    @abstractmethod
-    def get_all_expired_links(self) -> List[LinkDatabaseRecord]:
-        pass
-
-    @abstractmethod
-    def get_link_interactions_by_link_id(self, link_id: str) -> List[InteractionsDatabaseRecord]:
-        pass
-
-class InteractionsRepository(AbstractInteractionsRepository):
+class InteractionsRepository():
     def __init__(self, session: Session):
         self.session = session
 

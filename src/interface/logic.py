@@ -1,6 +1,5 @@
 from typing import Union
 from datetime import datetime
-from abc import ABC, abstractmethod
 from pydantic import BaseModel
 
 from sqlalchemy.orm import Session
@@ -15,32 +14,7 @@ class LinkDatabaseRecord(BaseModel):
     created_time: datetime
     expiration_time: Union[None, datetime]
 
-class AbstractLinkRepository(ABC):
-    @abstractmethod
-    def create_link(self, link_id: str, original_link: str) -> None:
-        pass
-
-    @abstractmethod
-    def get_link_by_link_id(self, link_id: str) -> LinkDatabaseRecord:
-        pass
-
-    @abstractmethod
-    def delete_link_by_link_id(self, link_id: str) -> None:
-        pass
-
-    @abstractmethod
-    def change_original_link(self, link_id: str, new_original_link: str) -> None:
-        pass
-
-    @abstractmethod
-    def change_expiration_time(self, link_id: str, new_expiration_time: datetime) -> None:
-        pass
-
-    @abstractmethod
-    def add_interaction_by_link(self, link_id: str, ip: str, country: str, user_agent: str) -> None:
-        pass
-
-class LinkRepository(AbstractLinkRepository):
+class LinkRepository():
     def __init__(self, session: Session):
         self.session = session
 
