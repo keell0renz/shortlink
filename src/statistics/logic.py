@@ -3,6 +3,12 @@ from typing import List, Union
 from pydantic import BaseModel
 from datetime import datetime
 
+from sqlalchemy.orm import Session
+from sqlalchemy.exc import SQLAlchemyError, IntegrityError
+from ..database.db_schema import Link, Interactions
+
+from ..exceptions import LinkAlreadyExists, LinkDoesNotExist, InternalSQLAlchemyError
+
 class LinkDatabaseRecord(BaseModel):
     link_id: str
     original_link: str
@@ -33,3 +39,9 @@ class AbstractInteractionsRepository(ABC):
     @abstractmethod
     def get_link_interactions_by_link_id(self, link_id: str) -> List[InteractionsDatabaseRecord]:
         pass
+
+class InteractionsRepository(AbstractInteractionsRepository):
+    def __init__(self, session: Session):
+        self.session = session
+
+    #TODO implementation
