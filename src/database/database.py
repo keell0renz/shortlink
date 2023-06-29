@@ -38,7 +38,7 @@ def _create_get_session(session_class):
     return get_session
 
 
-engine = _connect("postgresql://admin:secret@localhost:5678/admin")
+engine = _connect("sqlite:///:memory:")
 
 Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
