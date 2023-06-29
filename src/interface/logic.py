@@ -33,6 +33,10 @@ class AbstractLinkRepository(ABC):
     def change_expiration_time(self, link_id: str, new_expiration_time: datetime) -> None:
         pass
 
+    @abstractmethod
+    def add_interaction_by_link(self, link_id: str, ip: str, country: str, user_agent: str) -> None:
+        pass
+
 class LinkRepository(AbstractLinkRepository):
     def __init__(self, session: Session):
         self.session = session
