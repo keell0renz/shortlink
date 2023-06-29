@@ -4,11 +4,10 @@ from pydantic import BaseModel
 from datetime import datetime
 
 from sqlalchemy.orm import Session
-from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 from sqlalchemy import and_
 from ..database.db_schema import Link, Interactions
 
-from ..exceptions import LinkAlreadyExists, LinkDoesNotExist, InternalSQLAlchemyError
+from ..exceptions import LinkDoesNotExist
 
 class LinkDatabaseRecord(BaseModel):
     link_id: str
