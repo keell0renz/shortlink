@@ -95,7 +95,7 @@ class LinkRepository():
 
 
 class LinkInterface():
-    def __init__(self, repository: AbstractLinkRepository):
+    def __init__(self, repository: LinkRepository):
         self.repository = repository
 
     def create_link(self, link_id: str, original_link: str, expiration_time: Union[datetime, None]) -> None:
