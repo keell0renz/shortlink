@@ -42,6 +42,19 @@ class LinkDoesNotExist(Exception):
             }
         )
     
+class InternalSQLAlchemyError(Exception):
+    def __init__(self, msg):
+        self.msg = msg
+
+    def response(self):
+        return JSONResponse(
+            status_code=503,
+            content={
+                "exception": "Some SQLAlchemy internal error (not integrity error).",
+                "detail": f"{self.msg}"
+            }
+        )
+    
 @app.exception_handler(AuthenticationFailed)
 async def exception_authentication_failed(request: Request, exception: AuthenticationFailed):
     return exception.response()
@@ -52,4 +65,8 @@ async def exception_link_already_exists(request: Request, exception: LinkAlready
 
 @app.exception_handler(LinkDoesNotExist)
 async def exception_link_does_not_exist(request: Request, exception: LinkDoesNotExist):
+    return exception.response()
+
+@app.exception_handler(InternalSQLAlchemyError)
+async def exception_internal_sqlalchemy_error(request: Request, exception: InternalSQLAlchemyError):
     return exception.response()

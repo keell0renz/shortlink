@@ -4,6 +4,7 @@ from abc import ABC, abstractmethod
 from pydantic import BaseModel
 
 from sqlalchemy.orm import Session
+from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 from ..database.db_schema import Link, Interactions
 
 class LinkDatabaseRecord(BaseModel):
