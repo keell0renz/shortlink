@@ -5,6 +5,7 @@ from datetime import datetime
 
 from sqlalchemy.orm import Session
 from sqlalchemy import and_
+from sqlalchemy import or_
 from ..database.db_schema import Link, Interactions
 
 from ..exceptions import LinkDoesNotExist
@@ -50,7 +51,7 @@ class InteractionsRepository(AbstractInteractionsRepository):
         return [LinkDatabaseRecord(**link.__dict__) for link in links]
 
     def get_all_active_links(self) -> List[LinkDatabaseRecord]:
-        active_links = self.session.query(Link).filter(Link.expiration_time > datetime.now()).all()
+        active_links = self.session.query(Link).filter(or_(Link.expiration_time == None, Link.expiration_time > datetime.now())).all()
 
         return [LinkDatabaseRecord(**link.__dict__) for link in active_links]
 

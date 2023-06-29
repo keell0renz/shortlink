@@ -10,7 +10,7 @@ class Link(Base):
     link_id = Column(String, unique=True, nullable=False)
     original_link = Column(String, nullable=False)
     created_time = Column(DateTime, default=func.now(), nullable=False)
-    expiration_time = Column(DateTime, default=func.now(), nullable=True)
+    expiration_time = Column(DateTime, default=None, nullable=True)
     interactions = relationship("Interactions", backref="link")
 
 class Interactions(Base):
