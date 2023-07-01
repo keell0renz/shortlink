@@ -20,5 +20,5 @@ class Interactions(Base):
     link_id = Column(String, ForeignKey("links.link_id"), nullable=False)
     time = Column(DateTime, default=func.now(), nullable=False)
     ip = Column(String, nullable=False)
-    country = Column(String, nullable=False)
+    country = Column(String, nullable=True)
     user_agent = Column(String, nullable=False)
