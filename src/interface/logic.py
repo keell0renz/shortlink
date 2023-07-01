@@ -121,3 +121,6 @@ class LinkInterface():
 
     def delete_link(self, link_id: str) -> None:
         self.repository.delete_link_by_link_id(link_id)
+
+    def add_interaction(self, link_id: str, ip: str, country: str, user_agent: str) -> None:
+        self.repository.add_interaction_by_link(link_id, ip, country, user_agent)
