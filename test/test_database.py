@@ -5,7 +5,8 @@ from src.database.database import get_session
 
 class TestDatabase(unittest.TestCase):
     def test_getting_session(self):
-        pass
+        with get_session() as session:
+            pass
 
 if __name__ == "__main__":
     unittest.main()
