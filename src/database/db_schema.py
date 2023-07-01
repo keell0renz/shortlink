@@ -7,7 +7,7 @@ Base = declarative_base()
 class Link(Base):
     __tablename__ = "links"
 
-    link_id = Column(String, unique=True, nullable=False)
+    link_id = Column(String, primary_key=True, unique=True, nullable=False)
     original_link = Column(String, nullable=False)
     created_time = Column(DateTime, default=func.now(), nullable=False)
     expiration_time = Column(DateTime, default=None, nullable=True)
