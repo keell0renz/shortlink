@@ -43,11 +43,10 @@ class InteractionsRepository():
         return [LinkDatabaseRecord(**link.__dict__) for link in expired_links]
 
     def get_link_interactions_by_link_id(self, link_id: str) -> List[InteractionsDatabaseRecord]:
-        link = self.session.query(Link).filter_by(link_id=link_id).first()
-
-        if link is None:
-            raise LinkDoesNotExist(link_id)
-        
         interactions = self.session.query(Interactions).filter_by(link_id=link_id).all()
+
+        if not interactions:
+            if not self.session.query(Link).filter_by(link_id=link_id).first():
+                raise LinkDoesNotExist(link_id)
 
         return [InteractionsDatabaseRecord(**interaction.__dict__) for interaction in interactions]
