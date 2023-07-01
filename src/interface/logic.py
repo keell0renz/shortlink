@@ -87,7 +87,7 @@ class LinkRepository():
         try:
             link = self.session.query(Link).filter_by(link_id=link_id).first()
             if link is None:
-                raise LinkDoesNotExist
+                raise LinkDoesNotExist(link_id)
             
             interaction = Interactions(link_id=link_id, ip=ip, country=country, user_agent=user_agent)
             self.session.add(interaction)
