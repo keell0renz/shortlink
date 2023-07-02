@@ -3,14 +3,14 @@ from sqlalchemy.orm import sessionmaker
 from .db_schema import Base
 import os
 
-def _connect(default_db_string):
+def _connect():
     db_string = os.getenv("SHORTLINK_DB_STRING")
 
     if db_string:
         engine = create_engine(db_string)
 
     else:
-        engine = create_engine(default_db_string, connect_args={"check_same_thread": False})
+        engine = create_engine("sqlite:///:memory:", connect_args={"check_same_thread": False})
 
     return engine
 
@@ -36,7 +36,7 @@ def _create_get_session(session_class):
     return get_session
 
 
-engine = _connect("sqlite:///:memory:")
+engine = _connect()
 
 Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
