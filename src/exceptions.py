@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, status
 from fastapi.responses import JSONResponse
 
 app = FastAPI()
@@ -9,7 +9,7 @@ class AuthenticationFailed(Exception):
 
     def response(self):
         return JSONResponse(
-            status_code=403,
+            status_code=status.HTTP_403_FORBIDDEN,
             content={
                 "exception": "Authentication failed.",
                 "detail": f"API Key: {self.api_key} is not valid."
@@ -22,7 +22,7 @@ class LinkAlreadyExists(Exception):
 
     def response(self):
         return JSONResponse(
-            status_code=403,
+            status_code=status.HTTP_403_FORBIDDEN,
             content={
                 "exception": "Link already exists.",
                 "detail": f"Link ID: {self.link_id} cannot be used, as it is already in use."
@@ -35,7 +35,7 @@ class LinkDoesNotExist(Exception):
 
     def response(self):
         return JSONResponse(
-            status_code=404,
+            status_code=status.HTTP_404_NOT_FOUND,
             content={
                 "exception": "Link does not exist.",
                 "detail": f"Link ID: {self.link_id} cannot be used, because is does not exist."
@@ -48,7 +48,7 @@ class LinkHasExpired(Exception):
 
     def response(self):
         return JSONResponse(
-            status_code=404,
+            status_code=status.HTTP_403_FORBIDDEN,
             content={
                 "exception": "Link has expired!",
                 "detail": f"Link ID: {self.link_id} cannot be used, becuase it has expired."
@@ -61,7 +61,7 @@ class InternalSQLAlchemyError(Exception):
 
     def response(self):
         return JSONResponse(
-            status_code=503,
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             content={
                 "exception": "Some SQLAlchemy internal error (not integrity error).",
                 "detail": f"{self.msg}"
