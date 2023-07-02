@@ -12,7 +12,7 @@ router = APIRouter(dependencies=[Depends(verify_api_key)])
 
 @router.get("/links", status_code=status.HTTP_200_OK)
 async def stat_api_get_all_links(repository: InteractionsRepository = Depends(get_interactions_repository)):
-    return repository.get_all_active_links()
+    return repository.get_all_link_records()
 
 @router.get("/active_links", status_code=status.HTTP_200_OK)
 async def stat_api_get_active_links(repository: InteractionsRepository = Depends(get_interactions_repository)):
