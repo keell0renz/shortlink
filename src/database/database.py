@@ -12,7 +12,7 @@ def _connect(default_db_string):
         engine = create_engine(db_string)
 
     else:
-        engine = create_engine(default_db_string)
+        engine = create_engine(default_db_string, connect_args={"check_same_thread": False})
 
     return engine
 
