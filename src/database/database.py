@@ -1,6 +1,5 @@
 from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import sessionmaker
-from contextlib import contextmanager
 
 from .db_schema import Base
 
@@ -27,7 +26,6 @@ def _ensure_schema_exists(session, engine, base, check_for):
     session.close()
 
 def _create_get_session(session_class):
-    @contextmanager
     def get_session():
         session = session_class()
 
