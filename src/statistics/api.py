@@ -1,6 +1,13 @@
 from fastapi import APIRouter, Path, Depends
 from ..utils import verify_api_key, get_link_id
 
+from sqlalchemy.orm import Session
+from ..database.database import get_session
+from .logic import InteractionsRepository
+
+async def get_interactions_repository(session: Session = Depends(get_session)):
+    return InteractionsRepository(session)
+
 router = APIRouter(dependencies=[Depends(verify_api_key)])
 
 @router.get("/link/{link_id}")
