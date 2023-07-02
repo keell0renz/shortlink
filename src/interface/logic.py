@@ -125,7 +125,7 @@ class LinkInterface():
 
         if link_record.expiration_time != None:
             if link_record.expiration_time <= datetime.datetime.now():
-                return LinkHasExpired(link_id)
+                raise LinkHasExpired(link_id)
 
         return link_record.original_link
 
