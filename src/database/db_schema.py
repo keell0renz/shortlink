@@ -17,7 +17,7 @@ class Interactions(Base):
     __tablename__ = "interactions"
 
     id = Column(Integer, primary_key=True)
-    link_id = Column(String, ForeignKey("links.link_id"), nullable=False)
+    link_id = Column(String, ForeignKey("links.link_id"))
     time = Column(DateTime, default=func.now(), nullable=False)
     ip = Column(String, nullable=False)
     country = Column(String, nullable=True)
