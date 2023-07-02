@@ -42,6 +42,19 @@ class LinkDoesNotExist(Exception):
             }
         )
     
+class LinkHasExpired(Exception):
+    def __init__(self, link_id):
+        self.link_id = link_id
+
+    def response(self):
+        return JSONResponse(
+            status_code=404,
+            content={
+                "exception": "Link has expired!",
+                "detail": f"Link ID: {self.link_id} cannot be used, becuase it has expired."
+            }
+        )
+    
 class InternalSQLAlchemyError(Exception):
     def __init__(self, msg):
         self.msg = msg
@@ -65,6 +78,10 @@ async def exception_link_already_exists(request: Request, exception: LinkAlready
 
 @app.exception_handler(LinkDoesNotExist)
 async def exception_link_does_not_exist(request: Request, exception: LinkDoesNotExist):
+    return exception.response()
+
+@app.exception_handler(LinkHasExpired)
+async def exception_link_has_expired(request: Request, exception: LinkHasExpired):
     return exception.response()
 
 @app.exception_handler(InternalSQLAlchemyError)
