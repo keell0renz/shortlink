@@ -4,6 +4,7 @@ from sqlalchemy.orm import relationship
 
 Base = declarative_base()
 
+
 class Link(Base):
     __tablename__ = "links"
 
@@ -12,6 +13,7 @@ class Link(Base):
     created_time = Column(DateTime, default=func.now(), nullable=False)
     expiration_time = Column(DateTime, default=None, nullable=True)
     interactions = relationship("Interactions", backref="link")
+
 
 class Interactions(Base):
     __tablename__ = "interactions"

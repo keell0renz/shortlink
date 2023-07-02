@@ -3,6 +3,7 @@ from sqlalchemy.orm import sessionmaker
 from .db_schema import Base
 import os
 
+
 def _connect():
     db_string = os.getenv("SHORTLINK_DB_STRING")
 
@@ -10,18 +11,23 @@ def _connect():
         engine = create_engine(db_string)
 
     else:
-        engine = create_engine("sqlite:///:memory:", connect_args={"check_same_thread": False})
+        engine = create_engine(
+            "sqlite:///:memory:",
+            connect_args={
+                "check_same_thread": False})
 
     return engine
+
 
 def _ensure_schema_exists(session, engine, base, check_for):
     inspector = inspect(session.bind)
     tables = inspector.get_table_names()
 
-    if not check_for in tables:
+    if check_for not in tables:
         base.metadata.create_all(bind=engine)
 
     session.close()
+
 
 def _create_get_session(session_class):
     def get_session():
