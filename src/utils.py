@@ -17,4 +17,7 @@ async def get_original_link(original_link: str = Body(...)):
     return original_link
 
 async def get_expiration_time(expiration_time: Union[None, str] = Body(...)):
+    if expiration_time == "None":
+        expiration_time = None
+
     return expiration_time
