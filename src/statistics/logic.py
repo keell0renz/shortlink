@@ -20,7 +20,7 @@ class InteractionsDatabaseRecord(BaseModel):
     link_id: str
     time: datetime
     ip: str
-    country: str
+    country: Union[str, None]
     user_agent: str
 
 class InteractionsRepository():
