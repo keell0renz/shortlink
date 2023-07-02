@@ -133,9 +133,13 @@ class LinkInterface():
         self.repository.change_original_link(link_id, original_link)
 
     def change_expiration_time_by_link_id(self, link_id: str, expiration_time: Union[str, None]) -> None:
-        expiration_time = datetime.datetime.strptime(expiration_time, "%d/%m/%Y-%H:%M:%S")
+        if expiration_time == None:
+            self.repository.change_expiration_time(link_id, None)
+
+        else:
+            expiration_time = datetime.datetime.strptime(expiration_time, "%d/%m/%Y-%H:%M:%S")
         
-        self.repository.change_expiration_time(link_id, expiration_time)
+            self.repository.change_expiration_time(link_id, expiration_time)
 
     def delete_link(self, link_id: str) -> None:
         self.repository.delete_link_by_link_id(link_id)
