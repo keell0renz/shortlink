@@ -117,7 +117,7 @@ class LinkInterface():
             "link_id": link_record.link_id,
             "original_link": link_record.original_link,
             "created_time": link_record.created_time.strftime("%d/%m/%Y-%H:%M:%S"),
-            "expiration_time": link_record.expiration_time if not None else "None"
+            "expiration_time": link_record.expiration_time.strftime("%d/%m/%Y-%H:%M:%S") if not link_record.expiration_time else "None"
         }
 
     def get_original_link_by_link_id(self, link_id: str) -> str:
