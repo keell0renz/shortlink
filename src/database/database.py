@@ -1,8 +1,6 @@
 from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import sessionmaker
-
 from .db_schema import Base
-
 import os
 
 def _connect(default_db_string):

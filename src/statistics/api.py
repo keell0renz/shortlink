@@ -1,6 +1,5 @@
 from fastapi import APIRouter, Path, Depends, status
 from ..utils import verify_api_key, get_link_id
-
 from sqlalchemy.orm import Session
 from ..database.database import get_session
 from .logic import InteractionsRepository

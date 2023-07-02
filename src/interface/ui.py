@@ -1,7 +1,6 @@
 from fastapi import APIRouter, Path, Depends, Request
 from fastapi.responses import RedirectResponse
 from ..utils import get_link_id
-
 from sqlalchemy.orm import Session
 from ..database.database import get_session
 from .logic import LinkRepository, LinkInterface

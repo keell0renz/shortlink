@@ -1,12 +1,10 @@
 from typing import List, Union
 from pydantic import BaseModel
 from datetime import datetime
-
 from sqlalchemy.orm import Session
 from sqlalchemy import and_
 from sqlalchemy import or_
 from ..database.db_schema import Link, Interactions
-
 from ..exceptions import LinkDoesNotExist
 
 class LinkDatabaseRecord(BaseModel):
