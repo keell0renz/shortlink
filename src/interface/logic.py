@@ -11,7 +11,7 @@ from ..exceptions import LinkAlreadyExists, LinkDoesNotExist, LinkHasExpired, In
 class LinkDatabaseRecord(BaseModel):
     link_id: str
     original_link: str
-    created_time: datetime
+    created_time: datetime.datetime
     expiration_time: Union[None, datetime.datetime]
 
 class LinkRepository():
@@ -109,6 +109,16 @@ class LinkInterface():
             expiration_time = datetime.datetime.strptime(expiration_time, "%d/%m/%Y-%H:%M:%S")
 
             self.repository.change_expiration_time(link_id, expiration_time)
+
+    def get_link_data(self, link_id: str) -> dict:
+        link_record = self.repository.get_link_by_link_id(link_id)
+
+        return {
+            "link_id": link_record.link_id,
+            "original_link": link_record.original_link,
+            "created_time": link_record.created_time.strftime("%d/%m/%Y-%H:%M:%S"),
+            "expiration_time": link_record.expiration_time if not None else "None"
+        }
 
     def get_original_link_by_link_id(self, link_id: str) -> str:
         link_record = self.repository.get_link_by_link_id(link_id)
