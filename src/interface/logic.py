@@ -113,11 +113,17 @@ class LinkInterface():
     def get_link_data(self, link_id: str) -> dict:
         link_record = self.repository.get_link_by_link_id(link_id)
 
+        if link_record.expiration_time != None:
+            expiration_time = link_record.expiration_time.strftime("%d/%m/%Y-%H:%M:%S")
+
+        else:
+            expiration_time = "None"
+
         return {
             "link_id": link_record.link_id,
             "original_link": link_record.original_link,
             "created_time": link_record.created_time.strftime("%d/%m/%Y-%H:%M:%S"),
-            "expiration_time": link_record.expiration_time.strftime("%d/%m/%Y-%H:%M:%S") if not link_record.expiration_time else "None"
+            "expiration_time": expiration_time
         }
 
     def get_original_link_by_link_id(self, link_id: str) -> str:
