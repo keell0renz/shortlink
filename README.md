@@ -1,4 +1,4 @@
-# Shortlink `v0.0.1`
+# Shortlink `v1.0.0`
 ![](https://img.shields.io/badge/Portfolio_Project-blue)
 ![](https://img.shields.io/badge/Python-blue)
 ![](https://img.shields.io/badge/FastAPI-blue)
