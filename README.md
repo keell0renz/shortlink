@@ -19,6 +19,21 @@ A link-shortening miroservice with convenient REST API interface, suitable for m
 * Ability to add optional expiration date and change it / cancel it.
 * Ability to see links' usage statistics (Time, IP, Country, User-Agent).
 
+## What I Learned
+
+* Organize code in a good manner.
+* Follow a project structure.
+* Define interfaces and logic.
+* Organize repository of my project, making it understandable for other developers.
+* How to develop HTTP API applications.
+* Deploying code with Docker.
+* Basic Git workflow for solo projects.
+
+## What I Will Learn
+
+* I will expand my knowledge on Git and GitHub best practices, advanced workflow, branching, other production-grade conventions.
+* I will continue exploring python and web development.
+
 ## Launch
 
 ### Launch Without Docker
