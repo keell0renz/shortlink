@@ -33,6 +33,7 @@ A link-shortening miroservice with convenient REST API interface, suitable for m
 
 * I will expand my knowledge on Git and GitHub best practices, advanced workflow, branching, other production-grade conventions.
 * I will continue exploring python and web development.
+* I will learn more about unit testing, integration testing, and other QA methodics.
 
 ## Launch
 
