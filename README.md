@@ -18,3 +18,19 @@ A link-shortening miroservice with convenient REST API interface, suitable for m
 * Ability to see links and their data.
 * Ability to add optional expiration date and change it / cancel it.
 * Ability to see links' usage statistics (Time, IP, Country, User-Agent).
+
+## Launch
+
+### Launch Without Docker
+```
+export SHORTLINK_API_KEY="my_api_key" # Default is ""
+export SHORTLINK_DB_STRING="my_db_string" # Default is in-memory sqlite
+pip install -r requirements.txt
+uvicorn src.main:app
+```
+
+### Launch With Docker
+```
+docker build . -t shortlink:latest
+docker run --name shortlink-service -e SHORTLINK_API_KEY="my_api_key" -e SHORTLINK_DB_STRING="my_db_string" -p 8000:8000 -d shortlink:latest
+```
