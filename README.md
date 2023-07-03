@@ -21,10 +21,10 @@ A link-shortening miroservice with convenient REST API interface, suitable for m
 
 ## What I Learned
 
-* Organize code in a good manner.
-* Follow a project structure.
-* Define interfaces and logic.
-* Organize repository of my project, making it understandable for other developers.
+* Organizing code in a good manner.
+* Following a project structure.
+* Defining interfaces and logic.
+* Organizing repository of my project, making it understandable for other developers.
 * How to develop HTTP API applications.
 * Deploying code with Docker.
 * Basic Git workflow for solo projects.
