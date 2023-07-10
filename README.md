@@ -12,6 +12,8 @@ A link-shortening miroservice with convenient REST API interface, suitable for m
 
 ## Fuctionality
 
+### Note: File "Bop" in the project is a mock contribution of my friend `https://github.com/lavryniukk`
+
 * Access original links by direct access or using an API.
 * API Keys for Authentication and Authorization
 * Ability to manage links (Add, Delete, Change).
