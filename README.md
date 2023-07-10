@@ -12,7 +12,7 @@ A link-shortening miroservice with convenient REST API interface, suitable for m
 
 ## Fuctionality
 
-### Note: File "Bop" in the project is a mock contribution of my friend `https://github.com/lavryniukk`
+### Note: File "Bop" in the project is a mock contribution of <a href="https://github.com/lavryniukk">Lev Lavryniuk</a>, my frontend-dev friend.
 ### Note: It is a test portfolio project to showcase my code design and organization skills, and it is not intended for real use.
 ### Note: Tests will be written when I will learn test writing in detail, their abscense is temporary.
 
