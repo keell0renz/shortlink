@@ -1,5 +1,5 @@
 from typing import Union
-import datetime
+from datetime import datetime
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
@@ -10,8 +10,8 @@ from ..exceptions import LinkAlreadyExists, LinkDoesNotExist, LinkHasExpired, In
 class LinkDatabaseRecord(BaseModel):
     link_id: str
     original_link: str
-    created_time: datetime.datetime
-    expiration_time: Union[None, datetime.datetime]
+    created_time: datetime
+    expiration_time: Union[None, datetime]
 
 
 class LinkRepository():
@@ -109,25 +109,20 @@ class LinkInterface():
     def __init__(self, repository: LinkRepository):
         self.repository = repository
 
-    def create_link(self, link_id: str, original_link: str,
-                    expiration_time: Union[str, None]) -> None:
+    def create_link(self, link_id: str, original_link: str, expiration_time: Union[datetime, None]) -> None:
         self.repository.create_link(link_id, original_link)
 
         if expiration_time:
-            expiration_time = datetime.datetime.strptime(
-                expiration_time, "%d/%m/%Y-%H:%M:%S")
-
             self.repository.change_expiration_time(link_id, expiration_time)
 
     def get_link_data(self, link_id: str) -> dict:
         link_record = self.repository.get_link_by_link_id(link_id)
 
         if link_record.expiration_time is not None:
-            expiration_time = link_record.expiration_time.strftime(
-                "%d/%m/%Y-%H:%M:%S")
+            expiration_time = link_record.expiration_time.strftime("%d/%m/%Y-%H:%M:%S")
 
         else:
-            expiration_time = "None"
+            expiration_time = None
 
         return {
             "link_id": link_record.link_id,
@@ -145,25 +140,19 @@ class LinkInterface():
 
         return link_record.original_link
 
-    def change_original_link_by_link_id(
-            self, link_id: str, original_link: str) -> None:
+    def change_original_link_by_link_id(self, link_id: str, original_link: str) -> None:
         self.repository.change_original_link(link_id, original_link)
 
-    def change_expiration_time_by_link_id(
-            self, link_id: str, expiration_time: Union[str, None]) -> None:
+    def change_expiration_time_by_link_id(self, link_id: str, expiration_time: Union[datetime, None]) -> None:
         if expiration_time is None:
             self.repository.change_expiration_time(link_id, None)
 
         else:
-            expiration_time = datetime.datetime.strptime(
-                expiration_time, "%d/%m/%Y-%H:%M:%S")
-
             self.repository.change_expiration_time(link_id, expiration_time)
 
     def delete_link(self, link_id: str) -> None:
         self.repository.delete_link_by_link_id(link_id)
 
-    def add_interaction(self, link_id: str, ip: str,
-                        country: str, user_agent: str) -> None:
+    def add_interaction(self, link_id: str, ip: str, country: str, user_agent: str) -> None:
         self.repository.add_interaction_by_link(
             link_id, ip, country, user_agent)

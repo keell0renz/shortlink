@@ -2,6 +2,7 @@ from fastapi import Depends, Path, Body
 from fastapi.security import APIKeyHeader
 from .exceptions import AuthenticationFailed
 from typing import Union
+from datetime import datetime
 import os
 
 api_key_header = APIKeyHeader(name="api_key", auto_error=False)
@@ -22,6 +23,6 @@ async def get_original_link(original_link: str = Body(regex="http[s]?://(?:[a-zA
 
 async def get_expiration_time(expiration_time: Union[None, str] = Body(regex="^(None|(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/(19|20)\\d\\d-([01]\\d|2[0-3]):([0-5]\\d):([0-5]\\d))$")):
     if expiration_time == "None":
-        expiration_time = None
+        return None
 
-    return expiration_time
+    return datetime.strptime(expiration_time, "%d/%m/%Y-%H:%M:%S")
