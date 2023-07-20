@@ -1,7 +1,8 @@
+from .logic import LinkRepository, LinkInterface
 from fastapi import APIRouter, Depends, status
-from typing import Union
-from sqlalchemy.orm import Session
 from ..database.database import get_session
+from sqlalchemy.orm import Session
+from typing import Union
 from ..utils import (
     verify_api_key,
     get_link_id,
@@ -9,7 +10,6 @@ from ..utils import (
     get_original_link,
     get_expiration_time
 )
-from .logic import LinkRepository, LinkInterface
 
 router = APIRouter(dependencies=[Depends(verify_api_key)])
 

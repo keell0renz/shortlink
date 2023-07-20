@@ -1,13 +1,13 @@
 from fastapi import APIRouter, Depends, status
 from ..database.database import get_session
+from fastapi_utils.cbv import cbv
+from .logic import LinkInterface
 from ..utils import (
     verify_api_key,
     get_link_id,
     get_link_data,
     get_link_interface,
 )
-from .logic import LinkInterface
-from fastapi_utils.cbv import cbv
 
 router = APIRouter(dependencies=[Depends(verify_api_key)])
 

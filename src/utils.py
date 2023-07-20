@@ -1,14 +1,12 @@
-from fastapi import Depends, Path, Body
-from fastapi.security import APIKeyHeader
-from .exceptions import AuthenticationFailed
+from .statistics.logic import InteractionsRepository
+from .database.database import get_session, Session
 from typing import Union
 from datetime import datetime
-import os
-
 from .interface.logic import LinkRepository, LinkInterface
-from .database.database import get_session, Session
-
-from .statistics.logic import InteractionsRepository
+from .exceptions import AuthenticationFailed
+from fastapi.security import APIKeyHeader
+from fastapi import Depends, Path, Body
+import os
 
 api_key_header = APIKeyHeader(name="api_key", auto_error=False)
 

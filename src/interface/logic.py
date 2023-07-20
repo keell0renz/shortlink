@@ -1,10 +1,10 @@
-from typing import Union
-from datetime import datetime
-from pydantic import BaseModel
-from sqlalchemy.orm import Session
+from ..exceptions import LinkAlreadyExists, LinkDoesNotExist, LinkHasExpired, InternalSQLAlchemyError
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 from ..database.db_schema import Link, Interactions
-from ..exceptions import LinkAlreadyExists, LinkDoesNotExist, LinkHasExpired, InternalSQLAlchemyError
+from sqlalchemy.orm import Session
+from pydantic import BaseModel
+from datetime import datetime
+from typing import Union
 
 
 class LinkDatabaseRecord(BaseModel):

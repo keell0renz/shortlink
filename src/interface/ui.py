@@ -3,7 +3,7 @@ from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
 from ..utils import get_link_id
 from ..database.database import get_session
-from .logic import LinkRepository, LinkInterface
+from .logic import LinkInterface, LinkRepository
 
 def get_link_repository(session: Session = Depends(get_session)):
     return LinkRepository(session)
