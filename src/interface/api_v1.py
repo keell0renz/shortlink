@@ -5,16 +5,11 @@ from ..database.database import get_session
 from ..utils import (
     verify_api_key,
     get_link_id,
+    get_link_interface,
     get_original_link,
     get_expiration_time
 )
 from .logic import LinkRepository, LinkInterface
-
-def get_link_repository(session: Session = Depends(get_session)):
-    return LinkRepository(session)
-
-def get_link_interface(repository: LinkRepository = Depends(get_link_repository)):
-    return LinkInterface(repository)
 
 router = APIRouter(dependencies=[Depends(verify_api_key)])
 
