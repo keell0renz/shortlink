@@ -24,6 +24,7 @@ def api_get_link(
     interface: LinkInterface = Depends(get_link_interface)
 ):
     link_dict = interface.get_link_data(link_id)
+    
     return link_dict
 
 @router.post("/create/{link_id}", status_code=status.HTTP_201_CREATED)
