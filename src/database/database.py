@@ -12,7 +12,7 @@ def _connect():
 
     else:
         engine = create_engine(
-            "sqlite:///:memory:",
+            "sqlite:///shortlink.db",
             connect_args={
                 "check_same_thread": False})
 

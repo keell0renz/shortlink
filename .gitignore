@@ -4,3 +4,4 @@ prompt-crafter.py
 .vscode
 .pytest_cache
 src/shortlink.egg-info
+shortlink.db
