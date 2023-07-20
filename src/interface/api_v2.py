@@ -1,7 +1,4 @@
-
 from fastapi import APIRouter, Depends, status
-from typing import Union
-from sqlalchemy.orm import Session
 from ..database.database import get_session
 from ..utils import (
     verify_api_key,
@@ -9,9 +6,8 @@ from ..utils import (
     get_link_data,
     get_link_interface,
 )
-from .logic import LinkRepository, LinkInterface
+from .logic import LinkInterface
 from fastapi_utils.cbv import cbv
-from pydantic import BaseModel
 
 router = APIRouter(dependencies=[Depends(verify_api_key)])
 
