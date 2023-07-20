@@ -8,6 +8,8 @@ import os
 from .interface.logic import LinkRepository, LinkInterface
 from .database.database import get_session, Session
 
+from .statistics.logic import InteractionsRepository
+
 api_key_header = APIKeyHeader(name="api_key", auto_error=False)
 
 
@@ -44,3 +46,6 @@ def get_link_data(
         "original_link": original_link,
         "expiration_time": expiration_time
     }
+
+def get_interactions_repository(session: Session = Depends(get_session)):
+    return InteractionsRepository(session)

@@ -1,11 +1,7 @@
 from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
-from ..utils import verify_api_key, get_link_id
+from ..utils import verify_api_key, get_link_id, get_interactions_repository, InteractionsRepository
 from ..database.database import get_session
-from .logic import InteractionsRepository
-
-def get_interactions_repository(session: Session = Depends(get_session)):
-    return InteractionsRepository(session)
 
 router = APIRouter(dependencies=[Depends(verify_api_key)])
 
