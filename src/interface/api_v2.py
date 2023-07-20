@@ -1,24 +1,3 @@
-from fastapi import APIRouter, Depends, status
-from typing import Union
-from sqlalchemy.orm import Session
-from ..database.database import get_session
-from ..utils import (
-    verify_api_key,
-    get_link_id,
-    get_original_link,
-    get_expiration_time
-)
-from .logic import LinkRepository, LinkInterface
-from fastapi_utils import cbv
-from pydantic import BaseModel
-
-def get_link_repository(session: Session = Depends(get_session)):
-    return LinkRepository(session)
-
-def get_link_interface(repository: LinkRepository = Depends(get_link_repository)):
-    return LinkInterface(repository)
-
-router = APIRouter(dependencies=[Depends(verify_api_key)])
 
 from fastapi import APIRouter, Depends, status
 from typing import Union
@@ -27,27 +6,12 @@ from ..database.database import get_session
 from ..utils import (
     verify_api_key,
     get_link_id,
-    get_original_link,
-    get_expiration_time
+    get_link_data,
+    get_link_interface,
 )
 from .logic import LinkRepository, LinkInterface
 from fastapi_utils.cbv import cbv
 from pydantic import BaseModel
-
-def get_link_repository(session: Session = Depends(get_session)):
-    return LinkRepository(session)
-
-def get_link_interface(repository: LinkRepository = Depends(get_link_repository)):
-    return LinkInterface(repository)
-
-def get_link_data(
-        original_link = Depends(get_original_link),
-        expiration_time = Depends(get_expiration_time)
-):
-    return {
-        "original_link": original_link,
-        "expiration_time": expiration_time
-    }
 
 router = APIRouter(dependencies=[Depends(verify_api_key)])
 
